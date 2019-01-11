@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd" >
+
+	<bean id="cgu.cguService" class="fr.paris.lutece.plugins.cgu.service.CguService" />
+    <bean id="cgu.cguDAO" class="fr.paris.lutece.plugins.cgu.business.CguDAO" />
+    <bean id="cgu.cguVersionDAO" class="fr.paris.lutece.plugins.cgu.business.CguVersionDAO" />
+    <bean id="cgu.acceptedCguDAO" class="fr.paris.lutece.plugins.cgu.business.AcceptedCguDAO" />
+</beans>

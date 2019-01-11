@@ -1,0 +1,52 @@
+<#include "manage_tabs.html" />
+<#include "/admin/util/editor/editor.html" />
+<@tabs2 tab="cgu" />
+
+<@box>
+	<@boxHeader title='#i18n{cgu.modify_cgu.title}' />
+	<@boxBody>
+    <@tform class="form-horizontal" method="post" name="modify_cgu" action="jsp/admin/plugins/cgu/ManageCgus.jsp">
+			<@messages errors=errors />
+			<input type="hidden" id="id" name="id" value="${cgu.id}"/>			
+				<@formGroup labelKey='#i18n{cgu.modify_cgu.labelDescription}' helpKey='#i18n{cgu.modify_cgu.labelDescription.help}' mandatory=true>
+					<@input type='text' name='description' value='${cgu.description}' />
+				</@formGroup>
+				<@formGroup labelFor='version' labelKey='#i18n{cgu.modify_cgu.labelVersion}' mandatory=true>
+					<#if cgu.cguVersions??>
+						   <#list cgu.cguVersions as cguVersion>
+							   <#if !cguVersion.published>
+								  V${cguVersion.version}
+								</#if>
+							</#list>    
+						  </#if>
+				</@formGroup>
+				<@formGroup labelKey='#i18n{cgu.modify_cgu.labelCode}' helpKey='#i18n{cgu.modify_cgu.labelCode.help}' mandatory=true>
+					<@input type='text' name='cgu_code' value='${cgu.cguCode}' />
+				</@formGroup>
+				<@formGroup labelKey='#i18n{cgu.modify_cgu.labelMinimumAge}' helpKey='#i18n{cgu.modify_cgu.labelMinimumAge.help}' >
+					<#if cgu.cguVersions??>
+						<#list cgu.cguVersions as cguVersion>
+		                   <#if !cguVersion.published>
+		                       <@input type='number' name='minimum_age' value='${cguVersion.minimumAge!0}' />
+		                    </#if>
+		                </#list>
+		              </#if>
+				</@formGroup>
+                <@formGroup labelKey='#i18n{cgu.modify_cgu.labelText}' helpKey='#i18n{cgu.modify_cgu.labelText.help}' mandatory=true> 
+		              <#if cgu.cguVersions??>
+		               <#list cgu.cguVersions as cguVersion>
+		                   <#if !cguVersion.published>
+		                       <@input type='textarea' name='text' richtext=true>${cguVersion.text!""}</@input>
+		                    </#if>
+		                </#list>    
+		              </#if>
+                 </@formGroup>
+                 <@formGroup labelKey='#i18n{cgu.create_cgu.labelCss}' helpKey='#i18n{cgu.create_cgu.labelCss.help}'>
+					<@input type='textarea' name='css'>${cgu.css!""}</@input>
+				</@formGroup>
+                 
+        <@actionButtons button1Name="action_modifyCgu" button2Name="view_manageCgu"/>
+    </@tform>
+	</@boxBody>
+</@box>
+<@initEditor />

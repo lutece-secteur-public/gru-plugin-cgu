@@ -1,0 +1,79 @@
+<#include "manage_tabs.html" />
+<@tabs2 tab="cgu" />
+
+<@box>
+    <@boxHeader title='#i18n{cgu.manage_cgu.title}' boxTools=true>
+        <@tform class='form-inline pull-right' name='manage_cgu' action='jsp/admin/plugins/cgu/ManageCgus.jsp'>
+            <@button type='submit' name='view_createCgu' buttonIcon='plus' title='#i18n{cgu.manage_cgus.buttonAdd}' />
+        </@tform>
+    </@boxHeader>
+    <@boxBody>    
+    <@messages infos=infos />
+    <@paginationAdmin paginator=paginator combo=1 />
+    <div class="clearfix"></div>
+    <@table>
+        <tr>
+            <input type="hidden" id="id" name="id"/>
+            <th>#i18n{cgu.manage_cgus.columnDescription}</th>
+            <th>#i18n{cgu.manage_cgus.columnVersion}</th>
+            <th>#i18n{cgu.manage_cgus.columnCguCode}</th>
+            <th>#i18n{cgu.manage_cgus.columnMinimumAge}</th>
+            <th>#i18n{portal.util.labelActions}</th>
+        </tr>
+        <#list cgu_list as cgu >
+			<#list cgu.cguVersions as cguVersion >
+			<#if cguVersion?index < 2>
+	            <tr>
+	        <#else>
+				<tr style="visibility:collapse" name="${cgu.cguCode}">
+	        </#if>
+            <input type="hidden" id="id" name="id"/>
+            <input type="hidden" id="id" name="id_cgu_version"/>
+            <td>
+				<#if cguVersion?index < 1>
+					${cgu.description!""}
+				</#if>
+                </td>
+				<td>
+					V${cguVersion.version!""}
+				</td>
+				<td>
+					${cgu.cguCode!""}
+				</td>
+				<td>
+					${cguVersion.minimumAge!""}
+				</td>
+				<td>
+					<!-- <@aButton href='jsp/admin/plugins/cgu/ManageCgus.jsp?action=confirmRemoveCgu&id=${cgu.id}' title='#i18n{portal.util.labelDelete}' buttonIcon='trash' color='btn-danger' showTitle=false /> -->
+					<#if !cguVersion.published>
+						<@aButton href='jsp/admin/plugins/cgu/ManageCgus.jsp?view=modifyCgu&id=${cgu.id}' title='#i18n{portal.util.labelModify}' buttonIcon='pencil' showTitle=false />
+						<@aButton href='jsp/admin/plugins/cgu/ManageCgus.jsp?action=publishedCguVersion&id=${cguVersion.id}' title='#i18n{cgu.manage_cgus.publishedVersion}' buttonIcon='globe' color='btn-warning' showTitle=false />
+						<@button params="onclick=\"showOrHidePreviousVersion('${cgu.cguCode}')\"" title='#i18n{cgu.manage_cgus.viewVersions}' buttonIcon='list' showTitle=false />
+					</#if>
+					<@aButton href='jsp/site/Portal.jsp?page=cgu&view=preview_cgu&cgu_code=${cgu.cguCode}&cgu_version=${cguVersion.version}' params='target=\"_blank\"' title='#i18n{cgu.manage_cgus.versionText}' showTitle=false buttonIcon='eye' />
+				</td>
+	        </tr>
+            </#list>
+       </#list>
+    </@table>
+
+    <@paginationAdmin paginator=paginator />
+
+  </@boxBody>
+</@box>
+<script type="text/javascript">
+	function showOrHidePreviousVersion(cguCode){
+		var elements = document.getElementsByName(cguCode);
+		for(var j=0;j<elements.length;j++){
+			var element = elements[j];
+			if(element != null && element != undefined){ 
+				var visibility = element.style.visibility;
+				if(visibility == "visible"){
+					element.style.visibility = "collapse";
+				} else {
+					element.style.visibility = "visible";
+				}
+			}
+		}
+	}
+</script>

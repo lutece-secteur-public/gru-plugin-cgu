@@ -1,0 +1,12 @@
+<div class="form-group">
+	<label class="control-label col-xs-12 col-sm-12 col-md-6 col-lg-5" for="is_minimum_age" >
+		<input type="checkbox" name="is_minimum_age" id="is_minimum_age" value="1" />
+		${i18n('cgu.frontOffice.labelIsMinimumAge', cguVersion.minimumAge)}
+	</label>
+</div>
+
+<input type="checkbox" name="is_accepted_cgu" id="is_accepted_cgu" value="1" />
+#i18n{module.genericattributes.cgu.frontOffice.labelIsAccepted}
+<a href='jsp/site/Portal.jsp?page=cgu&view=cgu&cgu_code=${cgu_code}' target='_blank'>
+	#i18n{cgu.frontOffice.labelCgu}
+</a>

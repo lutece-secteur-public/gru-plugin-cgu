@@ -1,0 +1,10 @@
+<#macro tabs2 tab >
+<@tabs>
+	<@listTabs>
+			<li <#if tab="cgu">class="active"</#if>>
+				<a href="jsp/admin/plugins/cgu/ManageCgus.jsp">#i18n{cgu.manage_cgus.pageTitle}</a>
+			</li>
+	</@listTabs>
+</@tabs>
+
+</#macro>

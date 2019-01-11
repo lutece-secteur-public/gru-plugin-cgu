@@ -1,0 +1,43 @@
+<#include "manage_tabs.html" />
+<#include "/admin/util/editor/editor.html" />
+<@tabs2 tab="cgu" />
+<@box>
+	<@boxHeader title='#i18n{cgu.create_cgu.title}' />
+	<@boxBody>
+    <@tform name='create_cgu' action='jsp/admin/plugins/cgu/ManageCgus.jsp'>
+
+        <@messages errors=errors />
+        <input type="hidden" id="id" name="id"/>
+        
+				<@formGroup labelKey='#i18n{cgu.create_cgu.labelDescription}' mandatory=true>
+					<@input type='text' name='description' value='${cgu.description!\'\'}' />
+				</@formGroup>
+				<@formGroup labelFor='version' labelKey='#i18n{cgu.modify_cgu.labelVersion}'>
+					V1
+				</@formGroup>
+				<@formGroup labelFor='cgu_code' labelKey='#i18n{cgu.modify_cgu.labelCode}' mandatory=true>
+					<@input type='text' name='cgu_code' value='${cgu.cguCode!""}' />
+				</@formGroup>
+				<@formGroup labelFor='minimum_age' labelKey='#i18n{cgu.modify_cgu.labelMinimumAge}' >
+					<@input type='number' name='minimum_age' value='${cgu.minimumAge!0}' />
+				</@formGroup>
+				<@formGroup labelKey='#i18n{cgu.create_cgu.labelText}' helpKey='#i18n{cgu.create_cgu.labelText.help}' mandatory=true>
+					<#if cgu.cguVersions??>
+		               <#list cgu.cguVersions as cguVersion>
+		                   <#if !cguVersion.published>
+		                       <@input type='textarea' name='text' richtext=true>${cguVersion.text!""}</@input>
+		                    </#if>
+		                </#list>
+		            <#else>
+		            	<@input type='textarea' name='text' richtext=true></@input>
+		            </#if>
+				</@formGroup>
+				<@formGroup labelKey='#i18n{cgu.create_cgu.labelCss}' helpKey='#i18n{cgu.create_cgu.labelCss.help}'>
+					<@input type='textarea' name='css'>${cgu.css!""}</@input>
+				</@formGroup>
+
+				<@actionButtons button1Name="action_createCgu" button2Name="view_manageCgu"/>
+    </@tform>
+	</@boxBody>
+</@box>
+<@initEditor />

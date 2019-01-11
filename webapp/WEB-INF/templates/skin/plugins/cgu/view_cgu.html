@@ -1,0 +1,6 @@
+<#if cguVersion?? && cguVersion?has_content >
+	<style>${css}</style>
+	${cguVersion.text}
+<#else>
+	#i18n{cgu.frontOffice.noCGUfound}
+</#if>
