@@ -19,7 +19,15 @@
 					<@input type='text' name='cgu_code' value='${cgu.cguCode!""}' />
 				</@formGroup>
 				<@formGroup labelFor='minimum_age' labelKey='#i18n{cgu.modify_cgu.labelMinimumAge}' >
-					<@input type='number' name='minimum_age' value='${cgu.minimumAge!0}' />
+				    <#if cgu.cguVersions??>
+						<#list cgu.cguVersions as cguVersion>
+		                   <#if !cguVersion.published>
+		                       <@input type='number' name='minimum_age' value='${cguVersion.minimumAge!0}' />
+		                    </#if>
+		                </#list>
+		            <#else>
+		                <@input type='number' name='minimum_age' value='0'/>
+		            </#if>
 				</@formGroup>
 				<@formGroup labelKey='#i18n{cgu.create_cgu.labelText}' helpKey='#i18n{cgu.create_cgu.labelText.help}' mandatory=true>
 					<#if cgu.cguVersions??>

@@ -50,11 +50,11 @@ public final class CguVersionDAO implements ICguVersionDAO
     private static final String SQL_QUERY_INSERT = "INSERT INTO cgu_version ( id_cgu, version, text, is_published, minimum_age ) VALUES ( ?, ?, ?, ?, ?) ";
     private static final String SQL_QUERY_UPDATE = "UPDATE cgu_version SET id_cgu_version = ?, id_cgu = ?, version = ? , text = ? , is_published = ?, minimum_age = ? WHERE id_cgu_version = ?";
     private static final String SQL_ORDER_BY_VERSION = " ORDER BY version";
-    private static final String SQL_QUERY_SELECT_BY_CGU_CODE_LAST_PUBLISHED = "SELECT id_cgu_version, id_cgu, version, text, is_published, minimum_age FROM cgu_version, cgu WHERE cgu.cgu_code = ? AND is_published = true";
-    private static final String SQL_QUERY_SELECT_BY_CGU_CODE_AND_VERSION = "SELECT id_cgu_version, cgu_version.id_cgu, version, text, is_published, minimum_age FROM cgu_version, cgu_cgu WHERE cgu_cgu.cgu_code = ? AND version = ?";
+    private static final String SQL_QUERY_SELECT_BY_CGU_CODE_LAST_PUBLISHED = "SELECT id_cgu_version, cgu_cgu.id_cgu, version, text, is_published, minimum_age FROM cgu_version INNER JOIN cgu_cgu ON cgu_cgu.id_cgu = cgu_version.id_cgu WHERE cgu_cgu.cgu_code = ? AND is_published = true";
+    private static final String SQL_QUERY_SELECT_BY_CGU_CODE_AND_VERSION = "SELECT id_cgu_version, cgu_version.id_cgu, version, text, is_published, minimum_age FROM cgu_version INNER JOIN cgu_cgu ON cgu_cgu.id_cgu = cgu_version.id_cgu WHERE cgu_cgu.cgu_code = ? AND version = ?";
     private static final String SQL_ORDER_BY_ID_CGU_AND_VERSION = " ORDER BY id_cgu, version DESC";
     private static final String SQL_QUERY_SELECT_BY_ID_CGU_VERSION = "SELECT id_cgu_version, id_cgu, version, text, is_published, minimum_age FROM cgu_version WHERE id_cgu_version = ?";
-    private static final String SQL_QUERY_SELECT_UNPUBLISHED_BY_CGU_CODE = "SELECT id_cgu_version, cgu_version.id_cgu, version, text, is_published, minimum_age FROM cgu_version, cgu_cgu WHERE is_published = false AND cgu_cgu.cgu_code = ?";
+    private static final String SQL_QUERY_SELECT_UNPUBLISHED_BY_CGU_CODE = "SELECT id_cgu_version, cgu_version.id_cgu, version, text, is_published, minimum_age FROM cgu_version INNER JOIN cgu_cgu on cgu_cgu.id_cgu = cgu_version.id_cgu WHERE cgu_code = ? AND is_published = false";
 
     /**
      * {@inheritDoc }

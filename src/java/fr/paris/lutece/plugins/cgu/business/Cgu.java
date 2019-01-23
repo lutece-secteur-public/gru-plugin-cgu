@@ -125,7 +125,8 @@ public class Cgu implements Serializable
 
     /**
      * 
-     * @param strCguCode the cguCode to set
+     * @param strCguCode
+     *            the cguCode to set
      */
     public void setCguCode( String strCguCode )
     {

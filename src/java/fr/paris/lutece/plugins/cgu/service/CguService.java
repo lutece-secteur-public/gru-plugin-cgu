@@ -40,7 +40,7 @@ import fr.paris.lutece.plugins.cgu.business.CguVersionHome;
 
 /**
  * 
- *  This class provides instances management methods (create, find, ...) for CguService objects
+ * This class provides instances management methods (create, find, ...) for CguService objects
  *
  */
 public class CguService implements ICguService

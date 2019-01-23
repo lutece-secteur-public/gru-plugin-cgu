@@ -1,4 +1,5 @@
 /*
+
  * Copyright (c) 2002-2019, Mairie de Paris
  * All rights reserved.
  *
@@ -104,7 +105,7 @@ public class CguJspBean extends AbstractManageJspBean
     private static final String INFO_CGU_CODE_ALREADY_USED = "cgu.info.cgu.cguCodeAlreadyUsed";
     private static final String WARNING_EMPTY_TEXT = "cgu.info.cgu.emptyText";
     private static final String WARNING_EMPTY_MINIMUM_AGE = "cgu.info.cgu.emptyMinimumAge";
-    
+
     // Actions
     private static final String ACTION_CREATE = "create";
     private static final String ACTION_MODIFY = "modify";
@@ -220,12 +221,13 @@ public class CguJspBean extends AbstractManageJspBean
     /**
      * Returns the list cgu to create a new version of cgu
      *
-     * @param cguVersionOld the new cguVersionOld
+     * @param cguVersionOld
+     *            the new cguVersionOld
      */
     private void doCreateNewCguVersion( CguVersion cguVersionOld )
     {
-    	CguVersion cguVersion = new CguVersion( );
-    	cguVersion.setCguId( cguVersionOld.getCguId() );
+        CguVersion cguVersion = new CguVersion( );
+        cguVersion.setCguId( cguVersionOld.getCguId( ) );
         cguVersion.setMinimumAge( cguVersionOld.getMinimumAge( ) );
         cguVersion.setText( cguVersionOld.getText( ) );
         cguVersion.setVersion( cguVersionOld.getVersion( ) + 1 );
@@ -254,7 +256,7 @@ public class CguJspBean extends AbstractManageJspBean
 
         if ( !validateCGU( request, ACTION_MODIFY ) )
         {
-            return redirectView( request, VIEW_CREATE_CGU );
+            return redirect( request, VIEW_MODIFY_CGU, PARAMETER_ID_CGU, _cgu.getId( ) );
         }
 
         String strCguCode = request.getParameter( PARAMETER_CODE );
@@ -308,37 +310,44 @@ public class CguJspBean extends AbstractManageJspBean
      * 
      * check if code is not already use / text is not empty and minimum age is not empty return true if ok else adderror message corresponding to what's wrong
      * 
-     * @param request the HttpServletRequest request
-     * @param action action made the get in this method
+     * @param request
+     *            the HttpServletRequest request
+     * @param action
+     *            action made the get in this method
      * @return false if cgu is not valid
      */
     private boolean validateCGU( HttpServletRequest request, String action )
     {
-    	boolean isValid = true;
+        boolean isValid = true;
         _cgu.setCss( request.getParameter( PARAMETER_CSS ) );
-        Cgu cgu = CguHome.findByCode( request.getParameter( PARAMETER_CODE ));
-        if ( ( action == ACTION_CREATE && cgu  != null ) || ( action == ACTION_MODIFY && cgu != null && cgu.getId() != _cgu.getId() ) )
+        Cgu cgu = CguHome.findByCode( request.getParameter( PARAMETER_CODE ) );
+        if ( ( action.equalsIgnoreCase( ACTION_CREATE ) && cgu != null )
+                || ( action.equalsIgnoreCase( ACTION_MODIFY ) && cgu != null && cgu.getId( ) != _cgu.getId( ) ) )
         {
-        	addError( INFO_CGU_CODE_ALREADY_USED, getLocale( ) );
-        	isValid = false;
+            addError( INFO_CGU_CODE_ALREADY_USED, getLocale( ) );
+            isValid = false;
         }
         _cgu.setCguCode( request.getParameter( PARAMETER_CODE ) );
-        
+
         CguVersion cguVersion = new CguVersion( );
         List<CguVersion> listCguVersion = new ArrayList<CguVersion>( );
         if ( request.getParameter( PARAMETER_MINIMUM_AGE ) == null || request.getParameter( PARAMETER_MINIMUM_AGE ).isEmpty( ) )
         {
             addError( WARNING_EMPTY_MINIMUM_AGE, getLocale( ) );
             isValid = false;
-        } else {
-        	cguVersion.setMinimumAge( Integer.parseInt( request.getParameter( PARAMETER_MINIMUM_AGE ) ) );
+        }
+        else
+        {
+            cguVersion.setMinimumAge( Integer.parseInt( request.getParameter( PARAMETER_MINIMUM_AGE ) ) );
         }
         if ( request.getParameter( PARAMETER_TEXT ) == null || request.getParameter( PARAMETER_TEXT ).isEmpty( ) )
         {
             addError( WARNING_EMPTY_TEXT, getLocale( ) );
             isValid = false;
-        }else {
-        	cguVersion.setText( request.getParameter( PARAMETER_TEXT ) );
+        }
+        else
+        {
+            cguVersion.setText( request.getParameter( PARAMETER_TEXT ) );
         }
         listCguVersion.add( cguVersion );
         _cgu.setCguVersions( listCguVersion );

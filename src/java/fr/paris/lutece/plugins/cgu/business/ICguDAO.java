@@ -106,8 +106,10 @@ public interface ICguDAO
     /**
      * return cgu with cgu code
      * 
-     * @param strCguCode the cguCode
-     * @param plugin the Plugin
+     * @param strCguCode
+     *            the cguCode
+     * @param plugin
+     *            the Plugin
      * @return cgu
      */
     Cgu selectByCode( String strCguCode, Plugin plugin );

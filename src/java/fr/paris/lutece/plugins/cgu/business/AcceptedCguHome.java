@@ -49,14 +49,15 @@ public final class AcceptedCguHome
     /**
      * defalut constructor
      */
-    private AcceptedCguHome()
+    private AcceptedCguHome( )
     {
     }
-    
+
     /**
      * method to create acceptedCgu
      * 
-     * @param acceptedCgu the acceptedCgu
+     * @param acceptedCgu
+     *            the acceptedCgu
      * @return acceptedCgu created
      */
     public static AcceptedCgu create( AcceptedCgu acceptedCgu )
@@ -66,9 +67,13 @@ public final class AcceptedCguHome
 
     /**
      * finds corresponding acceptedCgu
-     * @param strCguCode the cguCode
-     * @param nIdResource the idResource
-     * @param strResourceType the resourceType
+     * 
+     * @param strCguCode
+     *            the cguCode
+     * @param nIdResource
+     *            the idResource
+     * @param strResourceType
+     *            the resourceType
      * @return acceptedCgu corresponding
      */
     public static AcceptedCgu findByCodeAndResource( String strCguCode, int nIdResource, String strResourceType )

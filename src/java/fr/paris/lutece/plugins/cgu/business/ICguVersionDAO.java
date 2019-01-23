@@ -98,8 +98,10 @@ public interface ICguVersionDAO
     /**
      * get the last cgu version published
      * 
-     * @param strCguCode the cguCode
-     * @param plugin the plugin
+     * @param strCguCode
+     *            the cguCode
+     * @param plugin
+     *            the plugin
      * @return the last cgu version published
      */
     CguVersion selectLastVersionPublishedByCguCode( String strCguCode, Plugin plugin );
@@ -107,9 +109,12 @@ public interface ICguVersionDAO
     /**
      * get the cgu version by code and version
      * 
-     * @param strCguCode the cguCode
-     * @param nVersion the number of version
-     * @param plugin the plugin
+     * @param strCguCode
+     *            the cguCode
+     * @param nVersion
+     *            the number of version
+     * @param plugin
+     *            the plugin
      * @return cguVersion
      */
     CguVersion selectByCodeAndVersion( String strCguCode, int nVersion, Plugin plugin );
@@ -117,8 +122,10 @@ public interface ICguVersionDAO
     /**
      * get the unpublished cguversion by code
      * 
-     * @param strCguCode the cguCode
-     * @param plugin the plugin
+     * @param strCguCode
+     *            the cguCode
+     * @param plugin
+     *            the plugin
      * @return cguVersion
      */
     CguVersion selectUnpublishedCguVersionByCguCode( String strCguCode, Plugin plugin );

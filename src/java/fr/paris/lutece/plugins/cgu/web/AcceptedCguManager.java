@@ -70,13 +70,19 @@ public class AcceptedCguManager
     /**
      * create a line accepted cgu
      * 
-     * @param request the HttpServletRequest request
-     * @param strCguCode the cguCode
-     * @param nIdResource the idResource
-     * @param strResourceType the resourceType
+     * @param request
+     *            the HttpServletRequest request
+     * @param strCguCode
+     *            the cguCode
+     * @param nIdResource
+     *            the idResource
+     * @param strResourceType
+     *            the resourceType
      * @return the accepted cgu
-     * @throws CguNotAcceptedException if cgu not accepted
-     * @throws MinimumAgeNotAcceptedException if minimum age not certified
+     * @throws CguNotAcceptedException
+     *             if cgu not accepted
+     * @throws MinimumAgeNotAcceptedException
+     *             if minimum age not certified
      */
     public AcceptedCgu acceptCgu( HttpServletRequest request, String strCguCode, int nIdResource, String strResourceType ) throws CguNotAcceptedException,
             MinimumAgeNotAcceptedException
@@ -96,7 +102,8 @@ public class AcceptedCguManager
     /**
      * get the html accept cgu
      * 
-     * @param strCguCode the cguCode
+     * @param strCguCode
+     *            the cguCode
      * @return the template accept_cgu
      */
     public static String getHtmlToDisplay( String strCguCode )

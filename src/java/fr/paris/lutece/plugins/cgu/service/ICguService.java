@@ -49,7 +49,8 @@ public interface ICguService
     /**
      * Get last version of a CGU
      * 
-     * @param strCguCode the cguCode
+     * @param strCguCode
+     *            the cguCode
      * @return last version of the cgu
      */
     CguVersion findLastVersion( String strCguCode );
@@ -57,9 +58,12 @@ public interface ICguService
     /**
      * Save an accepted CGU
      * 
-     * @param strCguCode the cguCode
-     * @param nIdResource the idResource
-     * @param strResourceType the resourceType
+     * @param strCguCode
+     *            the cguCode
+     * @param nIdResource
+     *            the idResource
+     * @param strResourceType
+     *            the resourceType
      * @return acceptedCgu
      */
     AcceptedCgu acceptCgu( String strCguCode, int nIdResource, String strResourceType );
@@ -67,9 +71,12 @@ public interface ICguService
     /**
      * Return true if an accepted CGU is the last version of a CGU
      * 
-     * @param strCguCode the cguCode
-     * @param nIdResource the idResource
-     * @param strResourceType the resourceType
+     * @param strCguCode
+     *            the cguCode
+     * @param nIdResource
+     *            the idResource
+     * @param strResourceType
+     *            the resourceType
      * @return true if this is the last cgu version
      */
     boolean hasAcceptedLastVersion( String strCguCode, int nIdResource, String strResourceType );

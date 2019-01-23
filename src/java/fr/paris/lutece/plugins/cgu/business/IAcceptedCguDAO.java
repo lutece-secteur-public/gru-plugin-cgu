@@ -55,9 +55,12 @@ public interface IAcceptedCguDAO
     /**
      * Get an accepted cgu corresponding to these params
      * 
-     * @param strCguCode the cguCode
-     * @param nIdResource the idRerouce
-     * @param strResourceType the resourceType
+     * @param strCguCode
+     *            the cguCode
+     * @param nIdResource
+     *            the idRerouce
+     * @param strResourceType
+     *            the resourceType
      * @return macthed acceptedCgu
      */
     AcceptedCgu selectByCodeAndResource( String strCguCode, int nIdResource, String strResourceType );

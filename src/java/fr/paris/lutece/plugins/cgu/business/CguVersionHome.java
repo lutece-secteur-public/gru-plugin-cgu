@@ -86,7 +86,8 @@ public final class CguVersionHome
     /**
      * load the data of all cguVersion objects ordered by id, version DESC by idCgu and returns as a list
      * 
-     * @param nIdCgu id cgu
+     * @param nIdCgu
+     *            id cgu
      * @return the list which contains the data of all the cguVersoin ordered by id, version DESC
      */
 
@@ -112,7 +113,8 @@ public final class CguVersionHome
     /**
      * get the last version published by cgu code
      * 
-     * @param strCguCode the cguCode
+     * @param strCguCode
+     *            the cguCode
      * @return the cguVersion
      */
     public static CguVersion findLastVersionPublishedByCguCode( String strCguCode )
@@ -123,8 +125,10 @@ public final class CguVersionHome
     /**
      * get the cguVersion corresponding to the id version and cgu code
      * 
-     * @param strCguCode the cguCode
-     * @param nVersion the number of version
+     * @param strCguCode
+     *            the cguCode
+     * @param nVersion
+     *            the number of version
      * @return the cguVersion corresponding
      */
     public static CguVersion findByCodeAndVersion( String strCguCode, int nVersion )
@@ -135,7 +139,8 @@ public final class CguVersionHome
     /**
      * get the cguVersion corresponding to the id version
      * 
-     * @param nIdVersion the id cguVersion
+     * @param nIdVersion
+     *            the id cguVersion
      * @return the cguVersion corresponding to the id
      */
     public static CguVersion findByPrimaryKey( int nIdVersion )
@@ -146,7 +151,8 @@ public final class CguVersionHome
     /**
      * get the cguVersion corresponding to cguCode
      * 
-     * @param strCguCode the cguCode
+     * @param strCguCode
+     *            the cguCode
      * @return the cguVersion corresponding
      */
     public static CguVersion findUnpublishedCguVersionByCode( String strCguCode )

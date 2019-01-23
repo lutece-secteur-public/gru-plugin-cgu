@@ -129,7 +129,8 @@ public final class CguHome
     /**
      * find the cgu corresponding to his cguCode
      * 
-     * @param strCguCode the cguCode
+     * @param strCguCode
+     *            the cguCode
      * @return cgu corresponding
      */
     public static Cgu findByCode( String strCguCode )
