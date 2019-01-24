@@ -75,6 +75,9 @@ public abstract class AbstractManageJspBean extends MVCAdminJspBean
     /**
      * Return a model that contains the list and paginator infos
      * 
+     * @param <T>
+     *            The bean class
+     * 
      * @param request
      *            The HTTP request
      * @param strBookmark
