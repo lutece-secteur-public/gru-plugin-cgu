@@ -11,13 +11,61 @@
             </p>
             -->
             <subsection name="Introduction">
-                <p></p>
+                <p>
+                    Ce plugin permet de gérer des Conditions Générales d'Utilisations (CGU). Une CGU peut avoir plusieurs versions. Une version reste modifiable et n'est pas visible en front-office tant qu'elle n'est pas publiée.
+                </p>
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p>
+                    Le plugin ajoute la page d'admin <strong>Gestion des CGU</strong> qui permet de gérer les CGU. Les CGU créées sont alors affichées. Seules les 2 dernières versions des CGU sont affichées : la version draft et la dernière version publiée. Pour voir l'ensemble des versions d'une CGU, il suffit de cliquer sur le bouton <strong>Voir les versions précédentes</strong> de la colonne <strong>Actions</strong>.
+                 </p>
+                 <p>
+                    L'administrateur peut effectuer les actions suivantes :
+                    <ul>
+                        <li><strong>Ajouter une CGU</strong>. Elle s'ajoutera alors à la liste des CGU.</li>
+                        <li><strong>Modifier</strong> une CGU. Seule la version draft d'une CGU peut être éditée.</li>
+                        <li><strong>Publier version</strong>. La version en question sera alors disponible en front-office. Seule la dernière version publiée est disponible en front-office. Une nouvelle version draft est alors automatiquement créée.</li>
+                        <li><strong>Voir les versions précédentes</strong>. Les versions précédentes s'affichent alors sous la dernière version publiée.</li>
+                        <li><strong>Prévisualisation du texte</strong>. La prévisualisation de la CGU s'affiche alors dans un nouvel onglet. Le rendu est celui affiché en appliquant les classes CSS renseignées.</li>
+                    </ul>
+                 </p>
+                 <p>
+                    Lors de la création d'une CGU, les champs suivants sont à renseigner :
+                    <ul>
+                        <li><strong>Description</strong> : champ à destination des administrateurs pour qu'ils puissent s'y retrouver parmi la liste des CGU.</li>
+                        <li><strong>Code CGU</strong> : code unique parmi les CGU. Ce code est utilisé par les autres plugins Lutece pour retrouver la bonne CGU.</li>
+                        <li><strong>Age minimum</strong> : l'âge minimum requis pour accepter la CGU. Si la valeur est inférieure ou égale à 0, alors il n'y a pas de limite d'âge.</li>
+                        <li><strong>Texte</strong> : texte de la CGU. Ce texte peut contenir du HTML.</li>
+                        <li><strong>Feuille de style</strong> : classes CSS en lien avec le HTML du champ <strong>Texte</strong>. Champ facultatif.</li>
+                    </ul>
+                 </p>
+                 <p>
+                    Tous ces éléments peuvent être différents d'une version à l'autre. <strong>Attention : </strong>La modification des champs <strong>Description</strong> et <strong>Code CGU</strong> s'applique à l'ensemble des versions de la CGU.
+                 </p>
+            </subsection>
+            <subsection name="Services">
+                <p>
+                    Le service <code>fr.paris.lutece.plugins.cgu.service.ICguService</code> expose des méthodes permettant de gérer les CGU par les autres plugins Lutece :
+                    <ul>
+                        <li><code>findLastVersion( String strCguCode )</code> : permet de retrouver la dernière version de la CGU dont le code <code>strCguCode</code>est passé en paramètre.</li>
+                        <li><code>acceptCgu( String strCguCode, int nIdResource, String strResourceType )</code> : indique au <em>plugin-cgu</em> que la CGU dont le code est <code>strCguCode</code> a été acceptée pour la ressource dont le type est <code>strResourceType</code> et l'id est <code>nIdResource</code>. La ressource est propre au plugin Lutece utilisant ce service.</li>
+                        <li><code>hasAcceptedLastVersion( String strCguCode, int nIdResource, String strResourceType )</code> : teste si la ressource dont le type est <code>strResourceType</code> et l'id est <code>nIdResource</code> a accepté la dernière version de la CGU dont le code est <code>strCguCode</code>. La ressource est propre au plugin Lutece utilisant ce service. Cela peut être utile lorsqu'une nouvelle version de la CGU a été publiée. Il faut alors que la ressource accepte cette nouvelle version.</li>
+                    </ul>
+                </p>
+                <p>
+                    Ce service est implémenté par la classe <code>fr.paris.lutece.plugins.cgu.service.CguService</code>. 
+                </p>
+                <p>
+                    L'objet <code>fr.paris.lutece.plugins.cgu.business.CguVersion</code> représente une version d'une CGU. Cet objet contient l'id de la CGU associée, l'id, le texte et le numéro de version de la version de la CGU, si la version est publiée ou non et l'âge minimum d'acceptation de la CGU.
+                </p>
+                <p>
+                    L'objet <code>fr.paris.lutece.plugins.cgu.business.AcceptedCgu</code> représente la CGU acceptée par une ressource. Cet objet contient l'id et le type de la ressource et l'id de la dernière version acceptée de la CGU par cette ressource. L'id de la dernière version acceptée de la CGU est l'id d'un objet <code>fr.paris.lutece.plugins.cgu.business.CguVersion</code>.
+                </p>
             </subsection>
             <subsection name="Usage">
-                <p></p>
+                <p>
+                    Ce plugin s'utilise à travers les services exposés.
+                </p>
             </subsection>
         </section>
     </body>
