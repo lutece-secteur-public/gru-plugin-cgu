@@ -48,4 +48,11 @@
     <jiraProjectName>CGU</jiraProjectName>
     <jiraComponentId>14859</jiraComponentId>
 </properties> 
+
+    <scm>
+        <connection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-cgu.git</connection>
+        <developerConnection>scm:git:https://github.com/lutece-secteur-public/gru-plugin-cgu.git</developerConnection>
+        <url>https://github.com/lutece-secteur-public/gru-plugin-cgu.git</url>
+    </scm>
+
 </project>
